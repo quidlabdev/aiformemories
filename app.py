@@ -6,8 +6,6 @@ import cv2
 import requests
 import time
 
-
-#matplotlib.use("Agg")
 st.set_option('deprecation.showfileUploaderEncoding', False)  # Apagar warnings
 
 st.set_page_config(
@@ -25,8 +23,6 @@ hide_streamlit_style = """
             """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True) 
 
-
-
 def main():
 	"""Inteligencia Artificial"""
 	image =  Image.open('logo.png')
@@ -34,16 +30,16 @@ def main():
 	st.title("Rejuvenecedor de recuerdos")
 	#st.text("Fotos")
 
-	activites = ["Seleccione", "Subir archivo", "Enlace", "Créditos"]
+	activites = ["Selecciona", "Archivo", "Enlace", "Créditos"]
 
 	st.sidebar.image(image, use_column_width=False)
 
 	choice = st.sidebar.selectbox("Seleccione",activites)
 
-	if choice == "Seleccione":
-		st.subheader("Seleccione una de las opciones en el menú lateral")
+	if choice == "Selecciona":
+		st.subheader("Selecciona una de las opciones en el menú lateral")
 
-	elif choice == "Subir archivo":
+	elif choice == "Archivo":
 
 		st.subheader("Sube tu foto en blanco y negro")
 
@@ -84,9 +80,9 @@ def main():
 				st.write("Error: Intentos máximos alcanzados. Por favor espere un momento para volver a intentar")
 
 	if choice == 'Enlace':
-        # https://pbs.twimg.com/profile_images/1069379385847877633/F1YPBji6_400x400.jpg
-		st.header("Ingresa la url de la foto")
-		input_url = st.text_input("https://pbs.twimg.com/profile_images/1069379385847877633/F1YPBji6_400x400.jpg")
+        # Ejemplo: https://pbs.twimg.com/profile_images/1069379385847877633/F1YPBji6_400x400.jpg
+		st.header("Ingresa la URL de la foto en blanco y negro")
+		input_url = st.text_input("Ejemplo: https://pbs.twimg.com/profile_images/1069379385847877633/F1YPBji6_400x400.jpg")
 		if input_url != "":
 			image = Image.open(requests.get(input_url, stream=True).raw)		
 			st.subheader("Imagen original")
@@ -97,7 +93,6 @@ def main():
 			for percent_complete in range(100):
 				time.sleep(0.1)
 				my_bar.progress(percent_complete + 1)
-
 
 			r = requests.post(
 				"https://api.deepai.org/api/colorizer",
@@ -121,14 +116,10 @@ def main():
 				st.write("Error: Intentos máximos alcanzados. Por favor espere un momento para volver a intentar")
 
 
-
-	
 	elif choice == 'Créditos':
 		st.subheader("Créditos")
 		st.text("Jorge O. Cifuentes")
-		st.write('*jorgecif@gmail.com* :sunglasses:')
-
-
+		st.write('*jorge@quidlab.co* :sunglasses:')
 
 if __name__ == "__main__":
     main()
