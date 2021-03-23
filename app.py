@@ -36,7 +36,7 @@ def main():
 
 	choice = st.sidebar.selectbox("Seleccione",activites)
 
-	if choice == "Seleccione":
+	if choice == "Selecciona":
 		st.subheader("Selecciona una de las opciones en el menú lateral")
 
 	elif choice == "Archivo":
